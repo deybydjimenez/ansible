@@ -1,0 +1,28 @@
+---
+# env
+home_dir: "{{ lookup('env', 'HOME') }}"
+user_name: "{{ lookup('env', 'USER') }}"
+tmp_dir: "/tmp/"
+
+# ansible
+default_roles:
+  # core
+  - docker
+  - ssh
+  - secrets_store
+  - dotfiles
+
+  # languages
+  - node
+
+  # productivity
+  - flameshot
+
+  # tools
+  # - globalprotect
+  - chrome
+  - postman
+  - slack
+  - vscode
+
+  - cleaner

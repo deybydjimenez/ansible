@@ -1,0 +1,6 @@
+---
+vscode_url_prefix: https://vscode.download.prss.microsoft.com/dbazure/download/stable
+vscode_url_hash: 0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2
+vscode_download_version: code_1.85.1-1702462158_amd64.deb
+
+vscode_download_url: "{{ vscode_url_prefix }}/{{ vscode_url_hash }}/{{ vscode_download_version }}"

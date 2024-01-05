@@ -1,0 +1,21 @@
+---
+- name: "Global Protect | Add Docker's stable repository"
+  ansible.builtin.apt_repository:
+    repo: ppa:yuezk/globalprotect-openconnect
+    state: present
+  become: true
+
+- name: "Global Protect | Update APT cache"
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+
+- name: "Global Protect | Install dependencies"
+  ansible.builtin.apt:
+    name:
+      - openconnect
+      - globalprotect-openconnect
+      - network-manager-openconnect 
+      - network-manager-openconnect-gnome
+    state: present
+  become: true

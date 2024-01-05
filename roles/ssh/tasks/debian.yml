@@ -1,0 +1,25 @@
+- name: SSH | Ensure folder is created
+  ansible.builtin.file:
+    dest: "{{ ssh_dest_folder }}"
+    mode: "{{ ssh_folder_permissions }}"
+    state: directory
+
+- name: SSH | Install private key
+  ansible.builtin.copy:
+    src: "{{ ssh_orig_private_key_path }}"
+    dest: "{{ ssh_dest_private_key_path }}"
+    mode: "{{ ssh_private_key_permissions }}"
+
+- name: SSH | Install public key
+  ansible.builtin.copy:
+    src: "{{ ssh_orig_public_key_path }}"
+    dest: "{{ ssh_dest_public_key_path }}"
+    mode: "{{ ssh_public_key_permissions }}"
+
+- name: SSH | Set authorized key
+  ansible.posix.authorized_key:
+    user: "{{ user_name }}"
+    state: present
+    key: "{{ lookup('file', \"{{ ssh_dest_public_key_path }}\") }}"
+  with_fileglob:
+    - "{{ ssh_dest_public_key_path }}"

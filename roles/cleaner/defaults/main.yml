@@ -1,0 +1,3 @@
+---
+file_name: ".dotfiles_first_run"
+cleaner_file_path: "{{ home_dir }}/.config/dotfiles/{{ file_name }}"

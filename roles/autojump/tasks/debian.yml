@@ -1,0 +1,5 @@
+- name: Autojump | Install
+  become: true
+  ansible.builtin.apt:
+    name: autojump
+    state: present

@@ -1,0 +1,4 @@
+---
+# vars file for chrome
+chrome_download_url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+chrome_donwload_path: "{{ tmp_dir }}/chrome-installer.deb"

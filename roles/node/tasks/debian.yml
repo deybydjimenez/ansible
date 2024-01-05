@@ -1,0 +1,20 @@
+- name: Volta | Check
+  stat:
+    path: "{{ volta_installation_path }}"
+  register: volta_installed
+  failed_when: false
+  changed_when: false
+- name: Volta | Debug
+  debug:
+    msg: "Volta is installed? {{ volta_installed.stat.exists }} path: {{ volta_installation_path }}"
+- name: Volta | Download
+  become: true
+  when: not volta_installed.stat.exists
+  ansible.builtin.get_url:
+    url: "{{ volta_download_url }}"
+    dest: "{{ volta_download_path }}"
+    mode: "{{ volta_download_permissions }}"
+- name: Volta | Install
+  when: not volta_installed.stat.exists
+  ansible.builtin.command: bash "{{ volta_download_path }}"
+  changed_when: true

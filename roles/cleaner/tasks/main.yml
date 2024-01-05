@@ -1,0 +1,25 @@
+---
+# tasks file for cleaner
+- name: Cleaner | Check
+  stat:
+    path: "{{ cleaner_file_path }}"
+  register: cleaner_ran_previously
+  failed_when: false
+  changed_when: false
+- name: Cleaner | Ensure folder exists 
+  ansible.builtin.file:
+    dest: "{{ cleaner_file_path | dirname }}"
+    mode: "0700"
+    state: directory
+- name: Cleaner | Set file
+  when: not cleaner_ran_previously.stat.exists
+  ansible.builtin.copy:
+    src: "{{ file_name }}"
+    dest: "{{ cleaner_file_path }}"
+    mode: "0644"
+
+
+- name: Cleaner | Restart Your Computer
+  debug:
+    msg: "Restart your computer to finish the setup"
+  when: not cleaner_ran_previously.stat.exists

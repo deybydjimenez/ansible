@@ -1,0 +1,5 @@
+- name: Secrets Store | Install
+  become: true
+  ansible.builtin.apt:
+    name: pass
+    state: present

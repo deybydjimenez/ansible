@@ -1,0 +1,3 @@
+gnome_shortcut_key_index: "org.gnome.settings-daemon.plugins.media-keys.custom-keybinding"
+gnome_shortcut_key_value: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom"
+gnome_shortcut_key: "{{ gnome_shortcut_key_index }}:{{ gnome_shortcut_key_value }}"
