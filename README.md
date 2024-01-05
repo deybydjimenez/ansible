@@ -5,17 +5,21 @@
 - Curl installed
 - That's pretty much
 
-## How to install
+## Usage
 
+### Installation
 Use the needed script for each platform
 
-### Examples
+#### Examples
 
-#### Debian / Ubuntu
+##### Debian / Ubuntu
 
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/deybydjimenez/ansible/master/bin/debian)"
 ```
 
+That's it! It will install everything with no effort
 
-That's all!
+### Bash command
+
+This tool will create the ```dotfiles``` command. Everytime it's executed will be setting up everything again. 

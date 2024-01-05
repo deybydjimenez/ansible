@@ -38,10 +38,10 @@ fi
 echo "Running playbook..."
 if [[ -f $VAULT_SECRET ]]; then
     echo "Using vault config file..."
-    ansible-playbook --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
+    ansible-playbook --ask-become-pass --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
 else
     echo "Vault config file not found..."
-    ansible-playbook "$DOTFILES_DIR/main.yml" --ask-vault-pass
+    ansible-playbook  --ask-become-pass "$DOTFILES_DIR/main.yml" --ask-vault-pass
 fi
 
 if ! [[ -f "$IS_FIRST_RUN" ]]; then
