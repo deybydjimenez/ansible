@@ -14,7 +14,7 @@ Use the needed script for each platform
 #### Debian / Ubuntu
 
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/deybydjimenez/dotfiles/main/bin/debian)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/deybydjimenez/ansible/main/bin/debian)"
 ```
 
 

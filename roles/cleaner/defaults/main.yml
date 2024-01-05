@@ -1,3 +1,0 @@
----
-file_name: ".dotfiles_first_run"
-cleaner_file_path: "{{ ansible_user_dir }}/.config/dotfiles/{{ file_name }}"

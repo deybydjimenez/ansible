@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # SETTINGS
-REPO_URL="https://github.com/deybydjimenez/dotfiles.git"
+REPO_URL="https://github.com/deybydjimenez/ansible.git"
 
 # -------------------------------------------------------------------------- 
 # ------------------------------ DO NOT TOUCH ------------------------------
@@ -9,8 +9,8 @@ REPO_URL="https://github.com/deybydjimenez/dotfiles.git"
 
 CONFIG_DIR="$HOME/.config/dotfiles"
 DOTFILES_DIR="$HOME/.dotfiles"
-IS_FIRST_RUN="$CONFIG_DIR/.dotfiles_run"
-VAULT_SECRET="$DOTFILES_DIR/.vault-secret"
+IS_FIRST_RUN="$CONFIG_DIR/.dotfiles_first_run"
+VAULT_SECRET="$CONFIG_DIR/.vault-secret"
 
 # check if git is installed
 if ! dpkg -s git >/dev/null 2>&1; then
@@ -26,7 +26,7 @@ if ! dpkg -s ansible >/dev/null 2>&1; then
 	sudo apt install ansible -y
 fi
 
-Clone repository
+# Clone repository
 if ! [[ -d "$DOTFILES_DIR" ]]; then
     echo "Cloning repository:"
     git clone --quiet "$REPO_URL" "$DOTFILES_DIR" 2>&1 > /dev/null
@@ -35,7 +35,6 @@ else
     git -C "$DOTFILES_DIR" pull --quiet > /dev/null
 fi
 
-
 echo "Running playbook..."
 if [[ -f $VAULT_SECRET ]]; then
     echo "Using vault config file..."
@@ -43,4 +42,13 @@ if [[ -f $VAULT_SECRET ]]; then
 else
     echo "Vault config file not found..."
     ansible-playbook "$DOTFILES_DIR/main.yml" --ask-vault-pass
+fi
+
+if ! [[ -f "$IS_FIRST_RUN" ]]; then
+    touch "$IS_FIRST_RUN"
+    echo "export DOTFILES_HOME=\"$DOTFILES_DIR\"" >> $HOME/.bashrc
+    echo "export PATH=\"\$DOTFILES_HOME/bin:\$PATH\"" >> $HOME/.bashrc
+
+    echo "First run complete!"
+    echo "Please reboot your computer to complete the setup."
 fi
