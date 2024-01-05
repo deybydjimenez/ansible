@@ -10,6 +10,7 @@ REPO_URL="https://github.com/deybydjimenez/dotfiles.git"
 CONFIG_DIR="$HOME/.config/dotfiles"
 DOTFILES_DIR="$HOME/.dotfiles"
 IS_FIRST_RUN="$CONFIG_DIR/.dotfiles_run"
+VAULT_SECRET="$DOTFILES_DIR/.vault-secret"
 
 # check if git is installed
 if ! dpkg -s git >/dev/null 2>&1; then
@@ -26,12 +27,20 @@ if ! dpkg -s ansible >/dev/null 2>&1; then
 fi
 
 # Clone repository
-if ! [[ -d "$DOTFILES_DIR" ]]; then
-    echo "Cloning repository:"
-    git clone --quiet "$REPO_URL" "$DOTFILES_DIR" 2>&1 > /dev/null
-else
-    echo "Updating repository"
-    git -C "$DOTFILES_DIR" pull --quiet > /dev/null
-fi
+# if ! [[ -d "$DOTFILES_DIR" ]]; then
+#     echo "Cloning repository:"
+#     git clone --quiet "$REPO_URL" "$DOTFILES_DIR" 2>&1 > /dev/null
+# else
+#     echo "Updating repository"
+#     git -C "$DOTFILES_DIR" pull --quiet > /dev/null
+# fi
 
-ansible-playbook ../main.yml --ask-vault-pass --ask-become-pass
+
+echo "Running playbook..."
+if [[ -f $VAULT_SECRET ]]; then
+    echo "Using vault config file..."
+    ansible-playbook --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
+else
+    echo "Vault config file not found..."
+    ansible-playbook "$DOTFILES_DIR/main.yml" --ask-vault-pass
+fi

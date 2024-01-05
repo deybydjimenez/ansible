@@ -19,7 +19,6 @@ default_roles:
   # core
   - docker
   - ssh
-  - secrets_store
   - dotfiles
 
   # languages
