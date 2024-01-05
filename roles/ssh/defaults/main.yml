@@ -4,7 +4,7 @@ ssh_private_key_name: "id_rsa"
 ssh_public_key_name: "{{ ssh_private_key_name }}.pub"
 
 ssh_orig_folder: ""
-ssh_dest_folder: "{{ home_dir }}/.ssh"
+ssh_dest_folder: "{{ ansible_user_dir }}/.ssh"
 ssh_folder_permissions: "0700"
 
 ssh_orig_private_key_path: "{{ ssh_orig_folder }}{{ ssh_private_key_name }}"
