@@ -26,14 +26,14 @@ if ! dpkg -s ansible >/dev/null 2>&1; then
 	sudo apt install ansible -y
 fi
 
-# Clone repository
-# if ! [[ -d "$DOTFILES_DIR" ]]; then
-#     echo "Cloning repository:"
-#     git clone --quiet "$REPO_URL" "$DOTFILES_DIR" 2>&1 > /dev/null
-# else
-#     echo "Updating repository"
-#     git -C "$DOTFILES_DIR" pull --quiet > /dev/null
-# fi
+Clone repository
+if ! [[ -d "$DOTFILES_DIR" ]]; then
+    echo "Cloning repository:"
+    git clone --quiet "$REPO_URL" "$DOTFILES_DIR" 2>&1 > /dev/null
+else
+    echo "Updating repository"
+    git -C "$DOTFILES_DIR" pull --quiet > /dev/null
+fi
 
 
 echo "Running playbook..."
