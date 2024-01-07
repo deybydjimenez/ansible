@@ -1,0 +1,12 @@
+---
+- name: Pass | Ensure folder is created
+  ansible.builtin.file:
+    dest: "{{ pass_dest_folder }}"
+    # mode: "{{ pass_id_permissions }}"
+    state: directory
+
+- name: Pass | Install private key
+  ansible.builtin.copy:
+    src: "{{ pass_id }}"
+    dest: "{{ pass_id_dest }}"
+    mode: "{{ pass_id_permissions }}"

@@ -1,5 +1,6 @@
 pass_dest_folder: "{{ ansible_user_dir }}/.password-store"
 pass_repo_url: "git@github.com:deybydjimenez/work-secrets-vault.git"
 
+pass_id_dest: "{{ pass_dest_folder }}/.gpg-id"
 pass_id: "{{ role_path }}/files/pass/.gpg-id"
 pass_id_permissions: "0600"

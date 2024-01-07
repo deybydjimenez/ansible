@@ -7,6 +7,10 @@
   when: true
   ansible.builtin.import_tasks: gpg/main.yml
 
+- name: Run Pass tasks
+  when: true
+  ansible.builtin.import_tasks: pass/main.yml
+
 - name: Run Stow tasks
   when: true
   ansible.builtin.import_tasks: stow/main.yml

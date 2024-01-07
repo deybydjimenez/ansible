@@ -10,24 +10,15 @@
     paths: "{{ stow_folder_path }}"
     recurse: false
     file_type: directory
-  register: files
+  register: found_modules
+
+- name: Dotfiles | Stow | Found modules 
+  debug:
+    verbosity: 1
+    msg: "Modules => {{ found_modules.files }}"
 
 - name: Dotfiles | Stow | Deploy modules
-  with_items: '{{ files.files }}'
-  shell: |
-    cd ..
-    MODULE_NAME={{ item.path.split('/')[-1] }}
-    stow ${MODULE_NAME} -t {{ ansible_user_dir }}
-  args:
-    chdir: "{{ item.path }}"
-    executable: /bin/bash
-  loop_control:
-    label: |-
-      {% if output.stderr|length > 1 %}
-      {{ item.path }}
-      {{ output.stderr }}
-      {%- else %}
-      {{ item.path }}
-      {%- endif %}
-  register: output
-  changed_when: '"LINK" in output.stderr'
+  with_items: '{{ found_modules.files }}'
+  stow:
+    state: supress
+    package: '{{ item.path.split('/')[-1] }}'
