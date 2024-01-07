@@ -15,7 +15,7 @@ Use the needed script for each platform
 ##### Debian / Ubuntu
 
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/deybydjimenez/ansible/master/bin/debian)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/deybydjimenez/ansible/master/bin/dotfiles)"
 ```
 
 That's it! It will install everything with no effort
@@ -23,3 +23,7 @@ That's it! It will install everything with no effort
 ### Bash command
 
 This tool will create the ```dotfiles``` command. Everytime it's executed will be setting up everything again. 
+
+#### Flags
+
+- --tags / -t: this flag allows to execute only one role to increase the overall speed execution

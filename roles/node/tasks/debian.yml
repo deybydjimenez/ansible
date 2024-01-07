@@ -1,0 +1,39 @@
+---
+- name: Volta | Check
+  shell: which volta
+  register: volta_installed
+  failed_when: false
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Volta | Debug installed
+  debug:
+    verbosity: 1
+    msg: "Volta is installed? {{ volta_installed.rc == 0  }}"
+
+- name: Volta | Set tmp file location
+  when: volta_installed.rc != 0 
+  tempfile:
+    state: file
+    suffix: volta
+  register: volta_tmp_path
+
+- name: Volta | Debug path
+  when: volta_installed.rc != 0 
+  debug:
+    verbosity: 1
+    msg: "Volta download path {{ volta_tmp_path.path  }}"
+
+- name: Volta | Download
+  become: true
+  when: volta_installed.rc != 0 
+  ansible.builtin.get_url:
+    url: "{{ volta_download_url }}"
+    dest: "{{ volta_tmp_path.path }}"
+    mode: "0755"
+    
+- name: Volta | Install
+  when: volta_installed.rc != 0 
+  ansible.builtin.command: bash "{{ volta_tmp_path.path }}"
+  changed_when: true

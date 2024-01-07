@@ -1,0 +1,9 @@
+---
+- name: Volta | Debian install
+  ansible.builtin.import_tasks: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Node | Install Node
+  when: true
+  ansible.builtin.shell: "{{ node_install_command }}"
+  changed_when: true

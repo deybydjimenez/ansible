@@ -1,0 +1,10 @@
+---
+- name: Pass | Run Debian Installer
+  ansible.builtin.import_tasks: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Pass | Install private environment variables file
+  ansible.builtin.copy:
+    src: "{{ secrets_file_name }}"
+    dest: "{{ pass_private_file }}"
+    mode: "0644"

@@ -1,0 +1,5 @@
+---
+- name: Slack | Install
+  become: true
+  community.general.snap:
+    name: slack

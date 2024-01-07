@@ -1,0 +1,25 @@
+- name: VS Code | Check
+  shell: which code
+  register: vscode_installed
+  failed_when: false
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: VS Code | Debug
+  debug:
+    verbosity: 1
+    msg: "VSCode is installed? {{ vscode_installed.rc == 0 }}"
+
+- name: VS Code | Download
+  ansible.builtin.get_url:
+    url: "{{ vscode_download_server }}/{{ version }}/linux-deb-x64/{{ release }}"
+    dest: "{{ vscode_download_path }}.deb"
+    mode: "0755"
+  when: vscode_installed.rc != 0 
+
+- name: VS Code | Install
+  become: true
+  apt:
+    deb: "{{ vscode_download_path }}"
+  when: vscode_installed.rc != 0 

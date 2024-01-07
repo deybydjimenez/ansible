@@ -1,13 +1,19 @@
 ---
 # ansible roles
 default_roles:
+  # base
+  - os_identity
+  - docker
+  - pass
+
   # config
   - ssh
-  - itglobers
   - dotfiles
 
   # languages
   - rust
+  - node
+  - vtex
 
   # productivity
   - flameshot
@@ -17,6 +23,7 @@ default_roles:
   - chrome
   - postman
   - vscode
+  - slack
 
   # customization
   - autojump

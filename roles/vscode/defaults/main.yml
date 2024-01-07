@@ -1,0 +1,6 @@
+---
+vscode_download_path: "{{ tmp_dir }}/vscode-setup"
+vscode_download_server: "https://update.code.visualstudio.com/"
+
+version: "1.85.1"
+release: "stable"

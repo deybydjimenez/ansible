@@ -1,8 +1,0 @@
----
-- name: ITGlobers | Use dev role
-  ansible.builtin.import_role:
-    name: itglobers.suggested.dev
-
-- name: test
-  debug:
-    msg: "ansible user {{ ansible_user_id }} custom user {{ host_user }}"

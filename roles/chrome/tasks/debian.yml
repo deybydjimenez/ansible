@@ -1,0 +1,34 @@
+- name: Chrome | Check if it's installed
+  shell: which google-chrome
+  register: chrome_installed
+  failed_when: false
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Chrome | Set tmp file location
+  when: chrome_installed.rc != 0
+  tempfile:
+    state: file
+    suffix: chrome
+  register: chrome_tmp_path
+  
+- name: Chrome | Debug path
+  when: chrome_installed.rc != 0
+  debug:
+    msg: "chrome download path {{ chrome_tmp_path.path }}"
+    verbosity: 1
+
+- name: Chrome | Download
+  when: chrome_installed.rc != 0
+  get_url:
+    url: "{{ chrome_download_url }}"
+    mode: "0755"
+    dest: "{{ chrome_tmp_path.path }}"
+  become: true
+
+- name: Chrome | Install
+  when: chrome_installed.rc != 0
+  become: true
+  apt:
+    deb: "{{ chrome_tmp_path.path }}"

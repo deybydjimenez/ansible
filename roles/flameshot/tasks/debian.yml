@@ -1,0 +1,6 @@
+- name: Flameshot | Install
+  become: true
+  ansible.builtin.apt:
+    state: present
+    name: flameshot
+    install_recommends: true

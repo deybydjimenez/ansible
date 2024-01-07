@@ -1,0 +1,12 @@
+---
+- name: Pass | Install GPG
+  become: true
+  ansible.builtin.apt:
+    name: gpg
+    state: present
+
+- name: Pass | Install Pass
+  become: true
+  ansible.builtin.apt:
+    name: pass
+    state: present

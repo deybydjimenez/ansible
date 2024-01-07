@@ -1,0 +1,2 @@
+secrets_file_name: ".bash_secrets"
+pass_private_file: "{{ ansible_user_dir }}/{{ secrets_file_name }}"
