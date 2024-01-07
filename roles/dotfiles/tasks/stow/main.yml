@@ -21,4 +21,4 @@
   with_items: '{{ found_modules.files }}'
   stow:
     state: supress
-    package: '{{ item.path.split('/')[-1] }}'
+    package: '{{ item.path.split("/")[-1] }}'
