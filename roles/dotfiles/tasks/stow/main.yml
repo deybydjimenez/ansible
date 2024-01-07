@@ -21,4 +21,5 @@
   with_items: '{{ found_modules.files }}'
   stow:
     state: supress
+    dir: "{{ stow_folder_path }}"
     package: '{{ item.path.split("/")[-1] }}'
