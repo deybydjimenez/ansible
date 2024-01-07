@@ -7,8 +7,8 @@ REPO_URL="https://github.com/deybydjimenez/ansible.git"
 # ------------------------------ DO NOT TOUCH ------------------------------
 # --------------------------------------------------------------------------
 
-CONFIG_DIR="$HOME/.config/dotfiles"
 DOTFILES_DIR="$HOME/.dotfiles"
+CONFIG_DIR="$HOME/.config/dotfiles"
 IS_FIRST_RUN="$CONFIG_DIR/.dotfiles_first_run"
 VAULT_SECRET="$CONFIG_DIR/.vault-secret"
 
@@ -34,6 +34,10 @@ else
     echo "Updating repository"
     git -C "$DOTFILES_DIR" pull --quiet > /dev/null
 fi
+
+# Install collections
+echo "Updating Galaxy..."
+ansible-galaxy install -r "$DOTFILES_DIR/requirements.yml" 2>&1 > /dev/null
 
 echo "Running playbook..."
 if [[ -f $VAULT_SECRET ]]; then

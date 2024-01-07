@@ -2,6 +2,3 @@
 - name: Run Debian Tasks
   ansible.builtin.import_tasks: debian.yml
   when: ansible_os_family == 'Debian'
-
-- name: Clone Submodule
-  ansible.builtin.command: "git submodule update --init"

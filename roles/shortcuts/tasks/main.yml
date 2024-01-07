@@ -1,0 +1,27 @@
+---
+- name: Shortcuts | Add Custom Shortcut for Flameshot
+  changed_when: true
+  shell:
+    cmd: "gsettings set {{ 
+      gnome_keybinding_schema 
+    }} custom-keybindings [\"'{{ gnome_custom_shortcut_path }}0/'\"]"
+    
+- name: Shortcuts | Set Flameshot Shortcut
+  changed_when: true
+  gsetting:
+    schema: "{{ gnome_custom_shortcut_schema }}"
+    path: "{{ gnome_custom_shortcut_path }}0/"
+    settings:
+      name: "Take screenshot"
+      command: "/bin/sh -c '/usr/bin/flameshot gui'"
+      binding: "'<Shift><Super>s'"
+      
+- name: Shortcuts | Set Launcher Home Shortcut
+  changed_when: true
+  shell:
+    cmd: "gsettings set {{ gnome_keybinding_schema }} home [\"'<Super>e'\"]"
+       
+- name: Shortcuts | Set Launcher Terminal Shortcut
+  changed_when: true
+  shell:
+    cmd: "gsettings set {{ gnome_keybinding_schema }} terminal [\"'<Super>t'\"]"

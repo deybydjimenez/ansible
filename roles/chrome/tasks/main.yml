@@ -1,5 +1,3 @@
----
-# tasks file for chrome
-- name: Run Debian Tasks
-  ansible.builtin.import_tasks: debian.yml
-  when: ansible_os_family == 'Debian' and not ansible_host_environment_is_wsl
+- name: Chrome | Install
+  ansible.builtin.import_role:
+    name: itglobers.installers.chrome

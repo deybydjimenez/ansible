@@ -1,0 +1,23 @@
+---
+- name: Gnome | Install dependencies
+  ansible.builtin.apt:
+    name: 
+      - gnome-browser-connector
+      - gnome-tweaks
+    state: present
+    update_cache: true
+  become: true    
+
+- name: Gnome | Install Extensions
+  ansible.builtin.import_role:
+    name: PeterMosmans.customize-gnome
+  vars:
+    gnome_dconf:
+      - key: /org/gnome/desktop/background/show-desktop-icons
+        value: "false"
+    gnome_extensions:
+      - id: 3193 # Blur My Shell
+      - id: 3843 # Just Perfection 
+      - id: 5278 # Pano
+      - id: 1460 # Vitals
+      - id: 5177 # V-Shell (Vertical Workspaces) 

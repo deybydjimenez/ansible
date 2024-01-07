@@ -1,0 +1,4 @@
+gnome_keybinding_schema: "org.gnome.settings-daemon.plugins.media-keys"
+
+gnome_custom_shortcut_schema: "{{ gnome_keybinding_schema }}.custom-keybinding"
+gnome_custom_shortcut_path: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom"

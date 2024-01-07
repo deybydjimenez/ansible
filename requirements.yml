@@ -1,0 +1,7 @@
+collections:
+- name: https://github.com/deybydjimenez/collection-test
+  type: git
+  version: main
+
+roles:
+  - name: PeterMosmans.customize-gnome

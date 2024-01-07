@@ -1,3 +1,0 @@
----
-vscode_download_path: "{{ tmp_dir }}/vscode-setup.deb"
-vscode_permissions: "0755"

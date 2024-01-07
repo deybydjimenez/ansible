@@ -1,2 +1,0 @@
-flameshot_shortcut_command: "/bin/sh -c '/usr/bin/flameshot gui'"
-flameshot_shortcut_binding: "'<Shift><Super>S'"
