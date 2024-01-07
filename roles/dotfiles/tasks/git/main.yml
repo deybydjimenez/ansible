@@ -1,0 +1,49 @@
+---
+- name: "Dotfiles | Git | Set fetch.prune"
+  community.general.git_config:
+    name: fetch.prune
+    scope: global
+    value: true
+
+- name: "Dotfiles | Git | Set init.defaultBranch"
+  community.general.git_config:
+    name: init.defaultBranch
+    scope: global
+    value: main
+
+- name: "Dotfiles | Git | Set merge.ff"
+  community.general.git_config:
+    name: pull.rebase
+    scope: global
+    value: "no"
+
+- name: "Dotfiles | Git | Set pull.rebase"
+  community.general.git_config:
+    name: pull.rebase
+    scope: global
+    value: true
+
+- name: "Dotfiles | Git | Set rebase.autoStash"
+  community.general.git_config:
+    name: rebase.autoStash
+    scope: global
+    value: true
+
+- name: "Dotfiles | Git | Set user.email"
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_user_email }}"
+  no_log: true
+
+- name: "Dotfiles | Git | Set user.name"
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ git_user_name }}"
+
+- name: "Dotfiles | Git | Set user.username"
+  community.general.git_config:
+    name: user.username
+    scope: global
+    value: "{{ git_user_username }}"

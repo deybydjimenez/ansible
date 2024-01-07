@@ -1,0 +1,1 @@
+stow_folder_path: "{{ role_path }}/files/stow/"

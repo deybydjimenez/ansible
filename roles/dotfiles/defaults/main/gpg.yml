@@ -1,0 +1,4 @@
+gpg_origin_folder: "{{ role_path }}/files/gpg/"
+gpg_dest_folder: "{{ ansible_user_dir }}/.gnupg/"
+gpg_dest_folder_permissions: "0700"
+gpg_dest_files_permissions: "0600"

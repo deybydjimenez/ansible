@@ -1,0 +1,12 @@
+# tasks file for docker
+- name: GPG | Ensure folder is created
+  ansible.builtin.file:
+    dest: "{{ gpg_dest_folder }}"
+    mode: "{{ gpg_dest_folder_permissions }}"
+    state: directory
+
+- name: GPG | Install private key
+  ansible.builtin.copy:
+    src: "{{ gpg_origin_folder }}"
+    dest: "{{ gpg_dest_folder }}"
+    mode: "{{ gpg_dest_files_permissions }}"

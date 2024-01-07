@@ -1,0 +1,12 @@
+---
+- name: Run Git tasks
+  when: true
+  ansible.builtin.import_tasks: git/main.yml
+  
+- name: Run GPG tasks
+  when: true
+  ansible.builtin.import_tasks: gpg/main.yml
+
+- name: Run Stow tasks
+  when: true
+  ansible.builtin.import_tasks: stow/main.yml

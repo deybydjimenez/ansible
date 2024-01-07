@@ -1,0 +1,33 @@
+---
+- name: Dotfiles | Stow | Ensure is installed
+  become: true
+  ansible.builtin.apt:
+    name: stow
+    state: present
+
+- name: Dotfiles | Stow | Search modules
+  ansible.builtin.find:
+    paths: "{{ stow_folder_path }}"
+    recurse: false
+    file_type: directory
+  register: files
+
+- name: Dotfiles | Stow | Deploy modules
+  with_items: '{{ files.files }}'
+  shell: |
+    cd ..
+    MODULE_NAME={{ item.path.split('/')[-1] }}
+    stow ${MODULE_NAME} -t {{ ansible_user_dir }}
+  args:
+    chdir: "{{ item.path }}"
+    executable: /bin/bash
+  loop_control:
+    label: |-
+      {% if output.stderr|length > 1 %}
+      {{ item.path }}
+      {{ output.stderr }}
+      {%- else %}
+      {{ item.path }}
+      {%- endif %}
+  register: output
+  changed_when: '"LINK" in output.stderr'
