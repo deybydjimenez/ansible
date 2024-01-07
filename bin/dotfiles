@@ -35,6 +35,11 @@ else
     git -C "$DOTFILES_DIR" pull --quiet > /dev/null
 fi
 
+if [[ ":$PATH:" != *"DOTFILES_HOME"* ]]; then
+    echo "export DOTFILES_HOME=\"$DOTFILES_DIR\"" >> $HOME/.bashrc
+    echo "export PATH=\"\$DOTFILES_HOME/bin:\$PATH\"" >> $HOME/.bashrc
+fi
+
 # Install collections
 echo "Updating Galaxy..."
 ansible-galaxy install -r "$DOTFILES_DIR/requirements.yml" 2>&1 > /dev/null
@@ -50,9 +55,6 @@ fi
 
 if ! [[ -f "$IS_FIRST_RUN" ]]; then
     touch "$IS_FIRST_RUN"
-    echo "export DOTFILES_HOME=\"$DOTFILES_DIR\"" >> $HOME/.bashrc
-    echo "export PATH=\"\$DOTFILES_HOME/bin:\$PATH\"" >> $HOME/.bashrc
-
     echo "First run complete!"
     echo "Please reboot your computer to complete the setup."
 fi
