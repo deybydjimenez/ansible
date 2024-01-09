@@ -1,3 +1,3 @@
 yarn_install_command: "{{ volta_bin_path }}/volta install yarn"
 vtex_installation_command: "curl -L https://vtex.io/vtexcli/install | sh"
-vtex_logs_install_command: "vtex plugins add logs"
+vtex_logs_install_command: "vtex plugins add logs cms"
