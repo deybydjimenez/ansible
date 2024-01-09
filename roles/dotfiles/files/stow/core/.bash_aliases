@@ -6,4 +6,8 @@ alias yi="yarn install"
 alias vl="vtex link"
 alias vlv="vtex link --verbose"
 
+
+alias tscode="code --profile \"TS\""
+alias rscode="code --profile \"Rust\""
+
 source $HOME/.bash_secrets
