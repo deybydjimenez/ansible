@@ -1,0 +1,6 @@
+- name: Screen Broadcast | Install
+  become: true
+  ansible.builtin.apt:
+    state: present
+    name: gnome-network-displays
+    install_recommends: true
