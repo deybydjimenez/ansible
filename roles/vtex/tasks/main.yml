@@ -40,3 +40,12 @@
   when: vtex_installed.rc != 0
   ansible.builtin.shell: "{{ vtex_logs_install_command }}"
   changed_when: true
+
+- name: Node | Add VTEX symlink
+  become: true
+  file:
+    src: "{{ volta_bin_path }}/node"
+    dest: /usr/local/bin/node
+    owner: host_user
+    group: host_user
+    state: link

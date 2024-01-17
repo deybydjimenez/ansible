@@ -12,7 +12,7 @@
     file_type: directory
   register: found_modules
 
-- name: Dotfiles | Stow | Found modules 
+- name: Dotfiles | Stow | Found modules
   debug:
     verbosity: 1
     msg: "Modules => {{ found_modules.files }}"
