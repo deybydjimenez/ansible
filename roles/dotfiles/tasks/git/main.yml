@@ -29,6 +29,13 @@
     scope: global
     value: true
 
+- name: "Dotfiles | Git | Set commit.gpgsign"
+  community.general.git_config:
+    name: commit.gpgsign
+    scope: global
+    value: true
+
+
 - name: "Dotfiles | Git | Set user.email"
   community.general.git_config:
     name: user.email
@@ -47,3 +54,15 @@
     name: user.username
     scope: global
     value: "{{ git_user_username }}"
+
+- name: "Dotfiles | Git | Set user.signingkey"
+  community.general.git_config:
+    name: user.username
+    scope: global
+    value: "{{ git_user_signing_id }}"
+
+- name: "Dotfiles | Git | Set gpg.program"
+  community.general.git_config:
+    name: gpg.program
+    scope: global
+    value: "gpg"
