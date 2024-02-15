@@ -23,5 +23,9 @@
 	"prettier.bracketSameLine": true,
 	"prettier.jsxSingleQuote": true,
 	"prettier.trailingComma": "all",
-	"prettier.useTabs": true
+	"prettier.useTabs": true,
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"window.zoomLevel": -1
 }
