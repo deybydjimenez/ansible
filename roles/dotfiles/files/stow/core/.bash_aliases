@@ -5,7 +5,9 @@ alias yi="yarn install"
 
 alias vl="vtex link"
 alias vlv="vtex link --verbose"
+alias vlvc="vtex link --verbose -c"
 alias vcs="vtex cms sync"
+alias vul="vtex unlink"
 
 alias tscode="code --profile \"TS\""
 alias rscode="code --profile \"Rust\""
