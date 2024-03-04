@@ -1,5 +1,5 @@
 ---
-- name: "Global Protect | Add Docker's stable repository"
+- name: "Global Protect | Add GlobalProtect stable repository"
   ansible.builtin.apt_repository:
     repo: ppa:yuezk/globalprotect-openconnect
     state: present
