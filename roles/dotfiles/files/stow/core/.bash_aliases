@@ -1,4 +1,4 @@
-alias rmnode="find . -type d -name node_modules -exec rmdir {} \;"
+alias rmnode="find . -type d -name node_modules -exec rm -rf {} \;"
 
 alias yif="yarn install --frozen-dependencies"
 alias yi="yarn install"
@@ -8,6 +8,7 @@ alias vlv="vtex link --verbose"
 alias vlvc="vtex link --verbose -c"
 alias vcs="vtex cms sync"
 alias vul="vtex unlink"
+alias vls="vtex ls"
 
 alias tscode="code --profile \"TS\""
 alias rscode="code --profile \"Rust\""

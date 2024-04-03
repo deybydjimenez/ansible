@@ -27,5 +27,6 @@
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"window.zoomLevel": -1
+	"window.zoomLevel": -1,
+	"editor.minimap.enabled": false
 }
