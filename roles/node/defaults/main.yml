@@ -2,4 +2,4 @@
 volta_download_url: https://get.volta.sh
 volta_installation_path: "{{ ansible_user_dir }}/.volta"
 volta_bin_path: "{{ volta_installation_path }}/bin"
-node_install_command: "{{ volta_bin_path }}/volta install node"
+node_install_command: "{{ volta_bin_path }}/volta install node@lts"

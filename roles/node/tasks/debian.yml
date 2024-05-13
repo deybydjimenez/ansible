@@ -37,3 +37,7 @@
   when: volta_installed.rc != 0 
   ansible.builtin.command: bash "{{ volta_tmp_path.path }}"
   changed_when: true
+
+- name: Volta | Install Node LTS
+  ansible.builtin.shell: "{{ node_install_command }}"
+  changed_when: true

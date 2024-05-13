@@ -1,5 +1,5 @@
 ---
-- name: Node | Check Yarn
+- name: VTEX | Check Yarn
   shell: which yarn
   register: yarn_installed
   failed_when: false
@@ -7,17 +7,17 @@
   ignore_errors: true
   check_mode: false
 
-- name: Node | Yarn installed
+- name: VTEX | Yarn installed
   debug:
     verbosity: 1
     msg: "Yarn is installed? {{ yarn_installed.rc == 0  }}"
 
-- name: Node | Install Yarn
+- name: VTEX | Install Yarn
   when: yarn_installed.rc != 0
   ansible.builtin.shell: "{{ yarn_install_command }}"
   changed_when: true
 
-- name: Node | Check VTEX
+- name: VTEX | Check VTEX
   shell: which vtex
   register: vtex_installed
   failed_when: false
@@ -25,23 +25,23 @@
   ignore_errors: true
   check_mode: false
 
-- name: Node | VTEX installed
+- name: VTEX | VTEX installed
   debug:
     verbosity: 1
     msg: "VTEX is installed? {{ vtex_installed.rc == 0  }}"
 
-- name: Node | Install VTEX CLI
+- name: VTEX | Install VTEX CLI
   become: true
   when: vtex_installed.rc != 0
   ansible.builtin.shell: "{{ vtex_installation_command }}"
   changed_when: true
 
-- name: Node | Install VTEX Plugins
+- name: VTEX | Install VTEX Plugins
   when: vtex_installed.rc != 0
   ansible.builtin.shell: "{{ vtex_logs_install_command }}"
   changed_when: true
 
-- name: Node | Add VTEX symlink
+- name: VTEX | Add VTEX symlink
   become: true
   file:
     src: "{{ volta_bin_path }}/node"
