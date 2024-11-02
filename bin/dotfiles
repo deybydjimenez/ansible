@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # SETTINGS
-REPO_URL="git@github.com:deybydjimenez/ansible.git"
+REPO_URL="https://github.com/deybydjimenez/ansible.git"
 
 # -------------------------------------------------------------------------- 
 # ------------------------------ DO NOT TOUCH ------------------------------
